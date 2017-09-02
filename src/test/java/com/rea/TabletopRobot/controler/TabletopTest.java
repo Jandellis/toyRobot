@@ -29,4 +29,20 @@ public class TabletopTest {
     boolean result = tabletop.placeRobot(location);
     assertThat(result, is(true));
   }
+
+  @Test
+  public void placeInvalidRobotYHigh() throws Exception {
+    Location location = new Location(0,5, Direction.NORTH);
+    Tabletop tabletop = new Tabletop();
+    boolean result = tabletop.placeRobot(location);
+    assertThat(result, is(false));
+  }
+
+  @Test
+  public void placeInvalidRobotYLow() throws Exception {
+    Location location = new Location(0,-1, Direction.NORTH);
+    Tabletop tabletop = new Tabletop();
+    boolean result = tabletop.placeRobot(location);
+    assertThat(result, is(false));
+  }
 }
