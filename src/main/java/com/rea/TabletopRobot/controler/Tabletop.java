@@ -26,6 +26,10 @@ public class Tabletop {
     return true;
   }
 
+  public Boolean moveRobot() {
+    return false;
+  }
+
   private Boolean isLocationOnTable(Location location) {
     return (location.getX() <= xSize && location.getX() >= 0) && (location.getY() <= ySize && location.getY() >= 0);
   }

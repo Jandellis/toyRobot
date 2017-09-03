@@ -102,4 +102,15 @@ public class TabletopTest {
     boolean result = tabletop.placeRobot(location);
     assertThat(result, is(false));
   }
+
+
+  @Test
+  public void moveRobot() throws Exception {
+    Location location = new Location(0,0, Direction.NORTH);
+    Tabletop tabletop = new Tabletop();
+    tabletop.placeRobot(location);
+    boolean result = tabletop.moveRobot();
+
+    assertThat(result, is(true));
+  }
 }
