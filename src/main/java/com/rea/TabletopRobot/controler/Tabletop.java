@@ -27,6 +27,6 @@ public class Tabletop {
   }
 
   private Boolean isLocationOnTable(Location location) {
-    return (location.getX() >= xSize || location.getX() <= 0) && (location.getY() >= ySize || location.getY() <= 0);
+    return (location.getX() <= xSize && location.getX() >= 0) && (location.getY() <= ySize && location.getY() >= 0);
   }
 }
