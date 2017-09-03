@@ -24,7 +24,7 @@ public class TabletopTest {
 
   @Test
   public void placeValidRobotSouthWestCorner() throws Exception {
-    Location location = new Location(0,0, Direction.NORTH);
+    Location location = new Location(0, 0, Direction.NORTH);
     Tabletop tabletop = new Tabletop();
     boolean result = tabletop.placeRobot(location);
     assertThat(result, is(true));
@@ -32,7 +32,7 @@ public class TabletopTest {
 
   @Test
   public void placeValidRobotSouthEastCorner() throws Exception {
-    Location location = new Location(4,0, Direction.EAST);
+    Location location = new Location(4, 0, Direction.EAST);
     Tabletop tabletop = new Tabletop();
     boolean result = tabletop.placeRobot(location);
     assertThat(result, is(true));
@@ -40,7 +40,7 @@ public class TabletopTest {
 
   @Test
   public void placeValidRobotNorthWestCorner() throws Exception {
-    Location location = new Location(0,4, Direction.WEST);
+    Location location = new Location(0, 4, Direction.WEST);
     Tabletop tabletop = new Tabletop();
     boolean result = tabletop.placeRobot(location);
     assertThat(result, is(true));
@@ -48,7 +48,7 @@ public class TabletopTest {
 
   @Test
   public void placeValidRobotNorthEastCorner() throws Exception {
-    Location location = new Location(4,4, Direction.SOUTH);
+    Location location = new Location(4, 4, Direction.SOUTH);
     Tabletop tabletop = new Tabletop();
     boolean result = tabletop.placeRobot(location);
     assertThat(result, is(true));
@@ -56,7 +56,7 @@ public class TabletopTest {
 
   @Test
   public void placeInvalidRobotYHigh() throws Exception {
-    Location location = new Location(0,5, Direction.NORTH);
+    Location location = new Location(0, 5, Direction.NORTH);
     Tabletop tabletop = new Tabletop();
     boolean result = tabletop.placeRobot(location);
     assertThat(result, is(false));
@@ -64,7 +64,7 @@ public class TabletopTest {
 
   @Test
   public void placeInvalidRobotYLow() throws Exception {
-    Location location = new Location(0,-1, Direction.NORTH);
+    Location location = new Location(0, -1, Direction.NORTH);
     Tabletop tabletop = new Tabletop();
     boolean result = tabletop.placeRobot(location);
     assertThat(result, is(false));
@@ -72,7 +72,7 @@ public class TabletopTest {
 
   @Test
   public void placeInvalidRobotXHigh() throws Exception {
-    Location location = new Location(5,2, Direction.NORTH);
+    Location location = new Location(5, 2, Direction.NORTH);
     Tabletop tabletop = new Tabletop();
     boolean result = tabletop.placeRobot(location);
     assertThat(result, is(false));
@@ -80,7 +80,7 @@ public class TabletopTest {
 
   @Test
   public void placeInvalidRobotXLow() throws Exception {
-    Location location = new Location(-1,3, Direction.NORTH);
+    Location location = new Location(-1, 3, Direction.NORTH);
     Tabletop tabletop = new Tabletop();
     boolean result = tabletop.placeRobot(location);
     assertThat(result, is(false));
@@ -89,7 +89,7 @@ public class TabletopTest {
 
   @Test
   public void placeInvalidRobotBothHigh() throws Exception {
-    Location location = new Location(5,20, Direction.NORTH);
+    Location location = new Location(5, 20, Direction.NORTH);
     Tabletop tabletop = new Tabletop();
     boolean result = tabletop.placeRobot(location);
     assertThat(result, is(false));
@@ -97,7 +97,7 @@ public class TabletopTest {
 
   @Test
   public void placeInvalidRobotBothLow() throws Exception {
-    Location location = new Location(-1,-3, Direction.NORTH);
+    Location location = new Location(-1, -3, Direction.NORTH);
     Tabletop tabletop = new Tabletop();
     boolean result = tabletop.placeRobot(location);
     assertThat(result, is(false));
@@ -106,14 +106,13 @@ public class TabletopTest {
 
   @Test
   public void moveRobot() throws Exception {
-    Location location = new Location(0,0, Direction.NORTH);
+    Location location = new Location(0, 0, Direction.NORTH);
     Tabletop tabletop = new Tabletop();
     tabletop.placeRobot(location);
     boolean result = tabletop.moveRobot();
 
     Location resultLocation = tabletop.getRobot().getLocation();
-    Location expectedLocation = new Location(0,1,Direction.NORTH);
-
+    Location expectedLocation = new Location(0, 1, Direction.NORTH);
 
     assertThat(result, is(true));
     assertThat(resultLocation, is(expectedLocation));
@@ -121,7 +120,7 @@ public class TabletopTest {
 
   @Test
   public void moveRobotOffTable() throws Exception {
-    Location startLocation = new Location(0,0, Direction.SOUTH);
+    Location startLocation = new Location(0, 0, Direction.SOUTH);
     Tabletop tabletop = new Tabletop();
     tabletop.placeRobot(startLocation);
     boolean result = tabletop.moveRobot();

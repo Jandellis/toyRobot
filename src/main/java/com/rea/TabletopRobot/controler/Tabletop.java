@@ -36,7 +36,7 @@ public class Tabletop {
     }
     int x = 0;
     int y = 0;
-    switch (robot.getLocation().getDirection()){
+    switch (robot.getLocation().getDirection()) {
       case NORTH:
         y = 1;
         break;
@@ -50,11 +50,12 @@ public class Tabletop {
         x = -1;
         break;
     }
-    Location toMove = new Location(robot.getLocation().getX() + x, robot.getLocation().getY() + y, robot.getLocation().getDirection());
-if (!isLocationOnTable(toMove)) {
-  return false;
-}
-robot.setLocation(toMove);
+    Location toMove = new Location(robot.getLocation().getX() + x, robot.getLocation().getY() + y,
+        robot.getLocation().getDirection());
+    if (!isLocationOnTable(toMove)) {
+      return false;
+    }
+    robot.setLocation(toMove);
     return true;
   }
 
