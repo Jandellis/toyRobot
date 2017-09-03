@@ -2,6 +2,7 @@ package com.rea.TabletopRobot.controler;
 
 import com.rea.TabletopRobot.model.Location;
 import com.rea.TabletopRobot.model.Robot;
+import com.rea.TabletopRobot.model.Turn;
 
 /**
  * Created by james_000 on 3/09/2017.
@@ -57,6 +58,13 @@ public class Tabletop {
     }
     robot.setLocation(toMove);
     return true;
+  }
+
+  public Boolean turnRobot(Turn turn) {
+    if (!robot.isPlaced()) {
+      return false;
+    }
+    return false;
   }
 
   private Boolean isLocationOnTable(Location location) {

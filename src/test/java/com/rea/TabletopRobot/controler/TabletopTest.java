@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 
 import com.rea.TabletopRobot.model.Direction;
 import com.rea.TabletopRobot.model.Location;
+import com.rea.TabletopRobot.model.Turn;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -136,5 +137,19 @@ public class TabletopTest {
     boolean result = tabletop.moveRobot();
 
     assertThat(result, is(false));
+  }
+
+  @Test
+  public void turnRobot() throws Exception {
+    Location location = new Location(0, 0, Direction.NORTH);
+    Tabletop tabletop = new Tabletop();
+    tabletop.placeRobot(location);
+    boolean result = tabletop.turnRobot(Turn.LEFT);
+
+    Location resultLocation = tabletop.getRobot().getLocation();
+    Location expectedLocation = new Location(0, 0, Direction.WEST);
+
+    assertThat(result, is(true));
+    assertThat(resultLocation, is(expectedLocation));
   }
 }
