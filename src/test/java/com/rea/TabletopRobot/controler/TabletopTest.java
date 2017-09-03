@@ -111,6 +111,31 @@ public class TabletopTest {
     tabletop.placeRobot(location);
     boolean result = tabletop.moveRobot();
 
+    Location resultLocation = tabletop.getRobot().getLocation();
+    Location expectedLocation = new Location(0,1,Direction.NORTH);
+
+
     assertThat(result, is(true));
+    assertThat(resultLocation, is(expectedLocation));
+  }
+
+  @Test
+  public void moveRobotOffTable() throws Exception {
+    Location startLocation = new Location(0,0, Direction.SOUTH);
+    Tabletop tabletop = new Tabletop();
+    tabletop.placeRobot(startLocation);
+    boolean result = tabletop.moveRobot();
+    Location resultLocation = tabletop.getRobot().getLocation();
+
+    assertThat(result, is(false));
+    assertThat(resultLocation, is(startLocation));
+  }
+
+  @Test
+  public void moveRobotNotPlaced() throws Exception {
+    Tabletop tabletop = new Tabletop();
+    boolean result = tabletop.moveRobot();
+
+    assertThat(result, is(false));
   }
 }

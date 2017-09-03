@@ -37,4 +37,16 @@ public class Location {
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof  Location) {
+            return ((Location) obj).direction == this.direction &&
+                ((Location) obj).y == this.y &&
+                ((Location) obj).x == this.x;
+
+        } else {
+            return false;
+        }
+    }
 }

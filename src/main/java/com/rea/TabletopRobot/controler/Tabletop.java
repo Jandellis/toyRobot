@@ -17,6 +17,10 @@ public class Tabletop {
 
   }
 
+  public Robot getRobot() {
+    return robot;
+  }
+
   public Boolean placeRobot(Location location) {
     if (!isLocationOnTable(location)) {
       return false;
@@ -27,7 +31,31 @@ public class Tabletop {
   }
 
   public Boolean moveRobot() {
-    return false;
+    if (!robot.isPlaced()) {
+      return false;
+    }
+    int x = 0;
+    int y = 0;
+    switch (robot.getLocation().getDirection()){
+      case NORTH:
+        y = 1;
+        break;
+      case EAST:
+        x = 1;
+        break;
+      case SOUTH:
+        y = -1;
+        break;
+      case WEST:
+        x = -1;
+        break;
+    }
+    Location toMove = new Location(robot.getLocation().getX() + x, robot.getLocation().getY() + y, robot.getLocation().getDirection());
+if (!isLocationOnTable(toMove)) {
+  return false;
+}
+robot.setLocation(toMove);
+    return true;
   }
 
   private Boolean isLocationOnTable(Location location) {
