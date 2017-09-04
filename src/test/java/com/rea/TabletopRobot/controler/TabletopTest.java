@@ -140,7 +140,7 @@ public class TabletopTest {
   }
 
   @Test
-  public void turnRobot() throws Exception {
+  public void turnRobotLeftToNegative90() throws Exception {
     Location location = new Location(0, 0, Direction.NORTH);
     Tabletop tabletop = new Tabletop();
     tabletop.placeRobot(location);
@@ -148,6 +148,34 @@ public class TabletopTest {
 
     Location resultLocation = tabletop.getRobot().getLocation();
     Location expectedLocation = new Location(0, 0, Direction.WEST);
+
+    assertThat(result, is(true));
+    assertThat(resultLocation, is(expectedLocation));
+  }
+
+  @Test
+  public void turnRobotRightTo360() throws Exception {
+    Location location = new Location(0, 0, Direction.WEST);
+    Tabletop tabletop = new Tabletop();
+    tabletop.placeRobot(location);
+    boolean result = tabletop.turnRobot(Turn.RIGHT);
+
+    Location resultLocation = tabletop.getRobot().getLocation();
+    Location expectedLocation = new Location(0, 0, Direction.NORTH);
+
+    assertThat(result, is(true));
+    assertThat(resultLocation, is(expectedLocation));
+  }
+
+  @Test
+  public void turnRobot() throws Exception {
+    Location location = new Location(0, 0, Direction.EAST);
+    Tabletop tabletop = new Tabletop();
+    tabletop.placeRobot(location);
+    boolean result = tabletop.turnRobot(Turn.RIGHT);
+
+    Location resultLocation = tabletop.getRobot().getLocation();
+    Location expectedLocation = new Location(0, 0, Direction.SOUTH);
 
     assertThat(result, is(true));
     assertThat(resultLocation, is(expectedLocation));
