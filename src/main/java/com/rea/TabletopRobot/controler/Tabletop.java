@@ -1,5 +1,6 @@
 package com.rea.TabletopRobot.controler;
 
+import com.rea.TabletopRobot.model.Direction;
 import com.rea.TabletopRobot.model.Location;
 import com.rea.TabletopRobot.model.Robot;
 import com.rea.TabletopRobot.model.Turn;
@@ -64,7 +65,11 @@ public class Tabletop {
     if (!robot.isPlaced()) {
       return false;
     }
-    return false;
+    Location toTurn = new Location(robot.getLocation().getX(), robot.getLocation().getY(),
+        Direction.degreesToDirection(robot.getLocation().getDirection().getDegree() + turn.getDegree()));
+
+    robot.setLocation(toTurn);
+    return true;
   }
 
   private Boolean isLocationOnTable(Location location) {

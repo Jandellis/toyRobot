@@ -50,4 +50,13 @@ public class Location {
       return false;
     }
   }
+
+  @Override
+  public String toString() {
+    return "Location{" +
+        "x=" + x +
+        ", y=" + y +
+        ", direction=" + direction +
+        '}';
+  }
 }
