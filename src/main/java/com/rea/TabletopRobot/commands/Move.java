@@ -8,11 +8,11 @@ import com.rea.TabletopRobot.controler.Tabletop;
 public class Move extends Command {
 
   public Move(Tabletop tableTop) {
-    super(tableTop);
+    super(tableTop, "MOVE");
   }
 
   @Override
-  public void execute() {
+  public void execute(String[] args) {
 
   }
 }

@@ -9,10 +9,17 @@ public abstract class Command {
 
   protected Tabletop tableTop;
 
-  public Command(Tabletop tableTop) {
+  protected String name;
+
+  public Command(Tabletop tableTop, String name) {
     this.tableTop = tableTop;
+    this.name = name;
   }
 
-  public abstract void execute();
+  public abstract void execute(String[] args);
+
+  public String getName() {
+    return name;
+  }
 
 }
