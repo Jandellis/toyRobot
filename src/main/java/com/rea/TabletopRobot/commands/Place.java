@@ -18,6 +18,7 @@ public class Place extends Command {
   @Override
   public void execute(List<String> args) {
     if (args.size() < 3) {
+      LOGGER.error("Invalid number of arguments");
       return;
     }
     int x;
@@ -27,12 +28,14 @@ public class Place extends Command {
       x = Integer.valueOf(args.get(0));
       y = Integer.valueOf(args.get(1));
     } catch (NumberFormatException e) {
+      LOGGER.error("x and y must be integers");
       return;
     }
     Optional<Direction> direction = Direction.fromName(args.get(2));
     if (direction.isPresent()) {
-
       tableTop.placeRobot(new Location(x, y, direction.get()));
+    } else {
+      LOGGER.error("Invalid direction");
     }
 
   }

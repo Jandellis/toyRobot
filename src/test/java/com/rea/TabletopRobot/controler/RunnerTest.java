@@ -1,7 +1,7 @@
 package com.rea.TabletopRobot.controler;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 import com.rea.TabletopRobot.model.Direction;
 import com.rea.TabletopRobot.model.Location;
@@ -31,27 +31,44 @@ public class RunnerTest {
   @Test
   public void runBadCommand() throws Exception {
     runner.runCommand("MOVE1", new ArrayList<>());
+    assertThat(runner.getTabletop().getRobot().isPlaced(), is(false));
   }
 
   @Test
-  public void runGoodCommand() throws Exception {
-    runner.runCommand("PLACE", Stream.of("0", "0", Direction.NORTH.name()).collect(Collectors.toList()));
+  public void runCommandsWithoutPlaceFirst() throws Exception {
+
+    runner.runCommand("MOVE", new ArrayList<>());
     runner.runCommand("RIGHT", new ArrayList<>());
+    assertThat(runner.getTabletop().getRobot().isPlaced(), is(false));
+    runner.runCommand("PLACE", Stream.of("4", "4", Direction.EAST.name()).collect(Collectors.toList()));
 
     Location resultLocation = runner.getTabletop().getRobot().getLocation();
-    Location expectedLocation = new Location(0, 0, Direction.EAST);
+    Location expectedLocation = new Location(4, 4, Direction.EAST);
 
     assertThat(resultLocation, is(expectedLocation));
   }
 
   @Test
-  public void runGoodCommand2() throws Exception {
-    runner.runCommand("PLACE", Stream.of("0", "0",Direction.NORTH.name()).collect(Collectors.toList()));
+  public void tryPlaceOffTable() throws Exception {
+    runner.runCommand("PLACE", Stream.of("40", "4", Direction.EAST.name()).collect(Collectors.toList()));
+
+    assertThat(runner.getTabletop().getRobot().isPlaced(), is(false));
+  }
+
+  @Test
+  public void runAllCommands() throws Exception {
+    runner.runCommand("PLACE", Stream.of("1", "0", Direction.NORTH.name()).collect(Collectors.toList()));
+    runner.runCommand("MOVE", new ArrayList<>());
+    runner.runCommand("MOVE", new ArrayList<>());
     runner.runCommand("LEFT", new ArrayList<>());
+    runner.runCommand("LEFT", new ArrayList<>());
+    runner.runCommand("LEFT", new ArrayList<>());
+    runner.runCommand("MOVE", new ArrayList<>());
     runner.runCommand("REPORT", new ArrayList<>());
+    runner.runCommand("RIGHT", new ArrayList<>());
 
     Location resultLocation = runner.getTabletop().getRobot().getLocation();
-    Location expectedLocation = new Location(0, 0, Direction.WEST);
+    Location expectedLocation = new Location(2, 2, Direction.SOUTH);
 
     assertThat(resultLocation, is(expectedLocation));
   }
