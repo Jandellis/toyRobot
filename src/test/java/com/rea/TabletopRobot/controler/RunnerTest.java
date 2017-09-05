@@ -16,10 +16,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit4.SpringRunner;
 
-/**
- * Please fill me out with a bit of info about this file
- */
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
@@ -31,6 +27,18 @@ public class RunnerTest {
   @Test
   public void runBadCommand() throws Exception {
     runner.runCommand("MOVE1", new ArrayList<>());
+    assertThat(runner.getTabletop().getRobot().isPlaced(), is(false));
+  }
+
+  @Test
+  public void runBadPlaceCommand() throws Exception {
+    runner.runCommand("PLACE", Stream.of("1", "4", "dir").collect(Collectors.toList()));
+    assertThat(runner.getTabletop().getRobot().isPlaced(), is(false));
+  }
+
+  @Test
+  public void runBadPlaceCommandDirectionOnly() throws Exception {
+    runner.runCommand("PLACE", Stream.of(Direction.EAST.name()).collect(Collectors.toList()));
     assertThat(runner.getTabletop().getRobot().isPlaced(), is(false));
   }
 
