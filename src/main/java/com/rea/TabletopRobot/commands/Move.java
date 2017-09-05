@@ -4,7 +4,7 @@ import com.rea.TabletopRobot.controler.Tabletop;
 import java.util.List;
 
 /**
- * Please fill me out with a bit of info about this file
+ * Move the robot forward
  */
 public class Move extends Command {
 

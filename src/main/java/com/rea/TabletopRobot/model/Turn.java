@@ -1,7 +1,7 @@
 package com.rea.TabletopRobot.model;
 
 /**
- * Please fill me out with a bit of info about this file
+ * The possible turn options
  */
 public enum Turn {
   RIGHT(90),

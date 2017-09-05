@@ -3,7 +3,7 @@ package com.rea.TabletopRobot.model;
 import java.util.Optional;
 
 /**
- * Created by james_000 on 3/09/2017.
+ * The possible directions the robot can face
  */
 public enum Direction {
   NORTH(0, "NORTH"),
@@ -21,10 +21,12 @@ public enum Direction {
     this.name = name;
   }
 
-  public int getDegree() {
-    return degree;
-  }
-
+  /**
+   * Converts degrees into a direction
+   *
+   * @param degree the number of degrees
+   * @return the direction of those degrees
+   */
   public static Optional<Direction> degreesToDirection(int degree) {
     switch (degree) {
       case 360:
@@ -41,6 +43,11 @@ public enum Direction {
     return Optional.empty();
   }
 
+  /**
+   * Converts a string into a direction
+   * @param name the name of the direction
+   * @return the direction of the name
+   */
   public static Optional<Direction> fromName(String name) {
     switch (name) {
       case "NORTH":
@@ -53,5 +60,9 @@ public enum Direction {
         return Optional.of(WEST);
     }
     return Optional.empty();
+  }
+
+  public int getDegree() {
+    return degree;
   }
 }

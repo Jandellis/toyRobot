@@ -11,11 +11,8 @@ public class TabletopRobotApplication {
   public static void main(String[] args) {
     ConfigurableApplicationContext app = SpringApplication.run(TabletopRobotApplication.class, args);
 
-
-
-    Runner myBean = (Runner)app.getBean("runner");
-
-    myBean.init();
+    Runner runner = (Runner) app.getBean("runner");
+    runner.init();
 
   }
 }

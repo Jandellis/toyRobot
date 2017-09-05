@@ -6,21 +6,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Please fill me out with a bit of info about this file
+ * A command to be executed on the robot
  */
 public abstract class Command {
 
-  protected static final Logger LOGGER = LoggerFactory.getLogger(Command.class);
+  static final Logger LOGGER = LoggerFactory.getLogger(Command.class);
 
   Tabletop tableTop;
 
-  String name;
+  private String name;
 
   Command(Tabletop tableTop, String name) {
     this.tableTop = tableTop;
     this.name = name;
   }
 
+  /**
+   * Execute the command
+   *
+   * @param args the arguments of the command
+   */
   public abstract void execute(List<String> args);
 
   public String getName() {

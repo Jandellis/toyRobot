@@ -5,7 +5,7 @@ import com.rea.TabletopRobot.model.Turn;
 import java.util.List;
 
 /**
- * Please fill me out with a bit of info about this file
+ * Turn the robot to the Right
  */
 public class Right extends Command {
 

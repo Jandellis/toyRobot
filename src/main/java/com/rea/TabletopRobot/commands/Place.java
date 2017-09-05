@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Please fill me out with a bit of info about this file
+ * Place the robot on the table
  */
 public class Place extends Command {
 

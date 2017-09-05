@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Please fill me out with a bit of info about this file
+ * This class runs commands and execute them
  */
 @Service
 public class Runner {
@@ -52,6 +52,12 @@ public class Runner {
     }
   }
 
+  /**
+   * Execute a command
+   *
+   * @param commandName the command to run
+   * @param args the arguments of the command
+   */
   public void runCommand(String commandName, List<String> args) {
     Optional<Command> command = commands.stream()
         .filter(filteredCommand -> filteredCommand.getName().equals(commandName))

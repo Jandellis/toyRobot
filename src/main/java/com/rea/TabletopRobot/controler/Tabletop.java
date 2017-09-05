@@ -5,19 +5,24 @@ import com.rea.TabletopRobot.model.Location;
 import com.rea.TabletopRobot.model.Robot;
 import com.rea.TabletopRobot.model.Turn;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by james_000 on 3/09/2017.
+ * Class to control the robot and move it around on the table
  */
 @Component
 public class Tabletop {
 
   private Robot robot;
-  final private int xSize = 4;
-  final private int ySize = 4;
+  private int xSize;
+  private int ySize;
 
-  public Tabletop() {
+  @Autowired
+  public Tabletop(@Value("${tabletop.x.size}") int xSize, @Value("${tabletop.y.size}") int ySize) {
+    this.xSize = xSize;
+    this.ySize = ySize;
     robot = new Robot();
 
   }
@@ -26,6 +31,12 @@ public class Tabletop {
     return robot;
   }
 
+  /**
+   * Place the robot onto the table
+   *
+   * @param location the location to place
+   * @return true if the robot was placed successfully on the table
+   */
   public Boolean placeRobot(Location location) {
     if (!isLocationOnTable(location)) {
       return false;
@@ -35,6 +46,10 @@ public class Tabletop {
     return true;
   }
 
+  /**
+   * Moves the robot forward one title
+   * @return true if the robot was moved
+   */
   public Boolean moveRobot() {
     if (!robot.isPlaced()) {
       return false;
@@ -64,6 +79,11 @@ public class Tabletop {
     return true;
   }
 
+  /**
+   * Turn the robot 90 degrees in a direction
+   * @param turn the direction to turn
+   * @return true if the turn was executed
+   */
   public Boolean turnRobot(Turn turn) {
     if (!robot.isPlaced()) {
       return false;
