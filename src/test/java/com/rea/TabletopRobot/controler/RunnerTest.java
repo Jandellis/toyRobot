@@ -35,7 +35,7 @@ public class RunnerTest {
 
   @Test
   public void runGoodCommand() throws Exception {
-    runner.runCommand("PLACE", Stream.of("0", "0", "NORTH").collect(Collectors.toList()));
+    runner.runCommand("PLACE", Stream.of("0", "0", Direction.NORTH.name()).collect(Collectors.toList()));
     runner.runCommand("RIGHT", new ArrayList<>());
 
     Location resultLocation = runner.getTabletop().getRobot().getLocation();
@@ -46,7 +46,7 @@ public class RunnerTest {
 
   @Test
   public void runGoodCommand2() throws Exception {
-    runner.runCommand("PLACE", Stream.of("0", "0", "NORTH").collect(Collectors.toList()));
+    runner.runCommand("PLACE", Stream.of("0", "0",Direction.NORTH.name()).collect(Collectors.toList()));
     runner.runCommand("LEFT", new ArrayList<>());
     runner.runCommand("REPORT", new ArrayList<>());
 

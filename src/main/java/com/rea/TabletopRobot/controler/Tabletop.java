@@ -4,6 +4,7 @@ import com.rea.TabletopRobot.model.Direction;
 import com.rea.TabletopRobot.model.Location;
 import com.rea.TabletopRobot.model.Robot;
 import com.rea.TabletopRobot.model.Turn;
+import java.util.Optional;
 import org.springframework.stereotype.Component;
 
 /**
@@ -67,8 +68,13 @@ public class Tabletop {
     if (!robot.isPlaced()) {
       return false;
     }
-    Location toTurn = new Location(robot.getLocation().getX(), robot.getLocation().getY(),
-        Direction.degreesToDirection(robot.getLocation().getDirection().getDegree() + turn.getDegree()));
+    Optional<Direction> direction = Direction
+        .degreesToDirection(robot.getLocation().getDirection().getDegree() + turn.getDegree());
+    if (!direction.isPresent()) {
+      return false;
+    }
+
+    Location toTurn = new Location(robot.getLocation().getX(), robot.getLocation().getY(), direction.get());
 
     robot.setLocation(toTurn);
     return true;

@@ -17,9 +17,8 @@ public class Report extends Command {
 
   @Override
   public void execute(List<String> args) {
-
-    //do something when null
-    LOGGER.info("Robot location is " + tableTop.getRobot().getLocation());
-
+    if (tableTop.getRobot().isPlaced()) {
+      LOGGER.info("Robot location is " + tableTop.getRobot().getLocation());
+    }
   }
 }
